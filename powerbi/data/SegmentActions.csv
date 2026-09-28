@@ -1,0 +1,11 @@
+Segment,Priority,Recommended action,SortOrder
+Champions,Retain,"VIP / loyalty tier, early access to new ranges, ask for referrals. No discounts needed.",1
+Loyal Customers,Retain,"Upsell higher-value ranges, volume-based rewards, account manager for top ones.",2
+Potential Loyalists,Grow,"Membership / loyalty sign-up, personalised recommendations to raise frequency.",3
+New Customers,Grow,"Onboarding journey, welcome offer on 2nd order to build the habit.",4
+Promising,Grow,"Brand awareness, time-limited offer to trigger a repeat purchase.",5
+Need Attention,Re-engage,"Personalised reminders based on past purchases, limited-time offers.",6
+About to Sleep,Re-engage,Reactivation email with popular products; a small discount.,7
+At Risk,Win back,Personalised win-back offer; survey to find out why they stopped.,8
+Can't Lose Them,Win back,"Highest-value churn risk: direct call from account manager, strong incentive.",9
+Hibernating,Low cost,Low-cost automated campaigns only; don't overspend on reacquisition.,10

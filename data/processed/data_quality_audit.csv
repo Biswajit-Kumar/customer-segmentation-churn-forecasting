@@ -1,0 +1,8 @@
+,Rows,% of total
+Total rows,1067371,100.0
+Missing Customer ID,243007,22.766872999172733
+Missing Description,4382,0.4105414143723223
+Exact duplicate rows,34335,3.2167821685243467
+Cancellation invoices (start with 'C'),19494,1.8263565339511754
+Quantity <= 0,22950,2.1501427338760375
+Price <= 0,6207,0.5815222635803297

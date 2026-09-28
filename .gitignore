@@ -1,0 +1,10 @@
+# Large data files: regenerate by running notebooks 01-07
+data/raw/
+data/processed/*.parquet
+data/retail.db
+powerbi/data/FactSales.csv
+.ipynb_checkpoints/
+__pycache__/
+
+# Personal notes (kept local)
+docs/

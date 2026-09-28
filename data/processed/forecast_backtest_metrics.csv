@@ -1,0 +1,6 @@
+,MAPE %,WAPE %,Bias %
+Ensemble (avg of 2 best types),13.41,12.13,-0.88
+Harmonic regression,12.69,12.8,-4.6
+Seasonal naive × growth,17.5,15.21,2.83
+Seasonal naive,18.21,16.1,-4.66
+Naive,44.96,47.32,-47.32

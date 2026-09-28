@@ -1,0 +1,3 @@
+model,roc_auc
+Logistic Regression,0.7740446256624811
+Gradient Boosting,0.7682219075995647
