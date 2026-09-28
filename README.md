@@ -45,6 +45,11 @@
 |---|---|
 | ![Cohorts](reports/figures/04_cohort_heatmap.png) | ![RFM vs KMeans](reports/figures/03_rfm_vs_kmeans.png) |
 
+## Power BI dashboard (in progress)
+Five-page dark-theme dashboard (Overview · Segments · Churn Risk · Cohorts · Forecast) built on a star schema with DAX measures. Page design preview:
+
+![Dashboard design](powerbi/backgrounds/01_overview.png)
+
 ## Methodology highlights
 - **No data leakage:** churn features built only from data *before* each cutoff date; labels from the 90 days *after*; tested on a later, unseen quarter.
 - **Every model beats (or is compared to) a baseline.** Where ML didn't beat a simple rule (customer-value regression), the simpler method was deployed.
