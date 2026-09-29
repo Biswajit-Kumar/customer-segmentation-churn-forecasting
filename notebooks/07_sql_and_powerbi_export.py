@@ -94,6 +94,10 @@ con.close()
 # > Plus standalone tables for cohort retention and the forecast.
 
 # %%
+# Power BI compares text case-INsensitively, but pandas doesn't: codes like "15056bl" and "15056BL" (170 of them)
+# are the same product and would be duplicate keys in DimProduct → standardise to upper case for the BI layer.
+sales = sales.assign(StockCode=sales["StockCode"].str.upper())
+
 fact = sales[["Invoice", "InvoiceDate", "Date", "StockCode", "CustomerID", "Country", "Quantity", "Price", "Revenue"]].copy()
 fact["CustomerID"] = fact["CustomerID"].astype("Int64")
 fact.to_csv(PBI / "FactSales.csv", index=False)
@@ -119,6 +123,12 @@ pd.read_csv(PROCESSED / "weekly_forecast.csv").to_csv(PBI / "WeeklyForecast.csv"
 
 for f in sorted(PBI.glob("*.csv")):
     print(f"{f.name:22s} {len(pd.read_csv(f, usecols=[0])):>9,} rows  {f.stat().st_size/1e6:6.1f} MB")
+
+# Key checks: dimension keys must be unique (case-insensitively, as Power BI sees them)
+for name, df, keycol in [("DimProduct", product, "StockCode"), ("DimCustomer", cust, "CustomerID"), ("SegmentActions", seg, "Segment")]:
+    dups = df[keycol].astype(str).str.upper().duplicated().sum()
+    print(f"{name}[{keycol}] duplicate keys: {dups}")
+    assert dups == 0
 
 # %% [markdown]
 # ## ✅ Key takeaways
