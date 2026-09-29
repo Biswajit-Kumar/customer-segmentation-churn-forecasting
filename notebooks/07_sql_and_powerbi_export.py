@@ -94,9 +94,10 @@ con.close()
 # > Plus standalone tables for cohort retention and the forecast.
 
 # %%
-# Power BI compares text case-INsensitively, but pandas doesn't: codes like "15056bl" and "15056BL" (170 of them)
-# are the same product and would be duplicate keys in DimProduct → standardise to upper case for the BI layer.
-sales = sales.assign(StockCode=sales["StockCode"].str.upper())
+# Power BI compares text case-INsensitively and ignores trailing spaces, but pandas doesn't: codes like
+# "15056bl" vs "15056BL" (170 of them) and "47503J " vs "47503J" are the same product and would be duplicate
+# keys in DimProduct → trim and upper-case them for the BI layer.
+sales = sales.assign(StockCode=sales["StockCode"].str.strip().str.upper())
 
 fact = sales[["Invoice", "InvoiceDate", "Date", "StockCode", "CustomerID", "Country", "Quantity", "Price", "Revenue"]].copy()
 fact["CustomerID"] = fact["CustomerID"].astype("Int64")
@@ -126,7 +127,7 @@ for f in sorted(PBI.glob("*.csv")):
 
 # Key checks: dimension keys must be unique (case-insensitively, as Power BI sees them)
 for name, df, keycol in [("DimProduct", product, "StockCode"), ("DimCustomer", cust, "CustomerID"), ("SegmentActions", seg, "Segment")]:
-    dups = df[keycol].astype(str).str.upper().duplicated().sum()
+    dups = df[keycol].astype(str).str.strip().str.upper().duplicated().sum()
     print(f"{name}[{keycol}] duplicate keys: {dups}")
     assert dups == 0
 
