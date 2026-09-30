@@ -251,7 +251,8 @@ def render(spec):
                 if r == 0:
                     d.line(s(px1 + 18, y - 6, px2 - 18, y - 6), fill=PANEL_BORDER, width=S)
 
-    img.convert("RGB").save(OUT / f"{spec['file']}.png", optimize=True)
+    # draw at 2x for crisp anti-aliasing, then save at exactly 1280x720 so Power BI shows it 1:1 on a 1280x720 page
+    img.convert("RGB").resize((W, H), Image.LANCZOS).save(OUT / f"{spec['file']}.png", optimize=True)
     print("saved", spec["file"])
 
 
