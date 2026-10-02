@@ -42,7 +42,7 @@ NAV = ["Overview", "Segments", "Churn Risk", "Cohorts", "Forecast"]
 LAYOUT = [
     dict(file="01_overview", nav=0, title="Executive Overview",
          subtitle="How is the business performing?  ·  Dec 2009 – Dec 2011  ·  1.0M transactions",
-         slicers=2,
+         slicers=["COUNTRY", "YEAR"],          # right-to-left
          kpis=[("TOTAL REVENUE", TEAL, None), ("ORDERS", SKY, None), ("ACTIVE CUSTOMERS", VIOLET, None),
                ("AVG ORDER VALUE", AMBER, None), ("REVENUE YoY", ROSE, None)],
          panels=[(190, 200, 850, 455, "MONTHLY REVENUE  ·  THIS YEAR VS LAST YEAR", "visual", None),
@@ -55,7 +55,7 @@ LAYOUT = [
                      (VIOLET, "Weekday, office-hours ordering: a B2B wholesale customer base.")])]),
     dict(file="02_segments", nav=1, title="Customer Segments  ·  RFM",
          subtitle="Who are our customers, and who matters most?  ·  Recency · Frequency · Monetary",
-         slicers=1,
+         slicers=["ML CLUSTER"],
          kpis=[("CUSTOMERS", TEAL, None), ("REPEAT CUSTOMER RATE", SKY, None), ("CHAMPIONS' SHARE OF REVENUE", AMBER, None),
                ("REVENUE AT RISK (LAPSING)", ROSE, None)],
          panels=[(190, 200, 800, 455, "SHARE OF CUSTOMERS VS SHARE OF REVENUE BY SEGMENT", "visual", None),
@@ -64,7 +64,7 @@ LAYOUT = [
                  (580, 470, 1260, 700, "SEGMENT PLAYBOOK  ·  RECOMMENDED ACTIONS", "visual", None)]),
     dict(file="03_churn", nav=2, title="Churn Risk",
          subtitle="Who is likely to stop buying in the next 90 days, and how much revenue is at stake?",
-         slicers=1,
+         slicers=["SEGMENT"],
          kpis=[("REVENUE AT RISK · NEXT QTR", ROSE, None), ("HIGH-RISK CUSTOMERS", AMBER, None),
                ("AVG CHURN PROBABILITY", VIOLET, None), ("MODEL ROC-AUC (OUT-OF-TIME)", TEAL, "0.77")],
          panels=[(190, 200, 800, 455, "CUSTOMER VALUE VS CHURN RISK", "visual", None),
@@ -73,7 +73,7 @@ LAYOUT = [
                  (870, 470, 1260, 700, "REVENUE AT RISK BY SEGMENT", "visual", None)]),
     dict(file="04_cohorts", nav=3, title="Cohort Retention",
          subtitle="Do new customers come back?  ·  % of each acquisition cohort active N months later",
-         slicers=0,
+         slicers=[],
          kpis=[("MONTH-1 RETENTION", TEAL, None), ("MONTH-3 RETENTION", SKY, None),
                ("MONTH-12 RETENTION", VIOLET, None), ("ONE-TIME BUYERS", ROSE, None)],
          panels=[(190, 200, 880, 700, "RETENTION HEATMAP  ·  COHORT × MONTHS SINCE FIRST PURCHASE", "visual", None),
@@ -84,7 +84,7 @@ LAYOUT = [
                      (AMBER, "Repeat buyers spend 11× more: a 2nd-purchase journey is the top lever.")])]),
     dict(file="05_forecast", nav=4, title="Revenue Forecast",
          subtitle="What revenue should we expect next quarter?  ·  Weekly forecast with 80% / 95% ranges",
-         slicers=0,
+         slicers=[],
          kpis=[("FORECAST · NEXT 13 WEEKS", TEAL, None), ("LOW CASE (80%)", AMBER, None), ("HIGH CASE (80%)", SKY, None),
                ("BACKTEST ERROR (WAPE)", VIOLET, "12.1%"), ("FORECAST BIAS", GREEN, "−0.9%")],
          panels=[(190, 200, 1260, 505, "WEEKLY REVENUE  ·  ACTUAL, BACKTEST AND FORECAST", "visual", None),
@@ -206,9 +206,11 @@ def render(spec):
     # header
     text(d, (190, 20), spec["title"], font(F_BOLD, 25), TEXT)
     text(d, (191, 60), spec["subtitle"], font(F_REG, 11.5), MUTED)
-    for k in range(spec["slicers"]):           # slicer slots, right-aligned
+    for k, label in enumerate(spec["slicers"]):   # slicer slots, right-aligned, with a small label above
         x2 = 1260 - k * 170
         panel(img, x2 - 155, 26, x2, 64, radius=10)
+        d = ImageDraw.Draw(img)
+        tracked(d, (x2 - 153, 12), label, font(F_SEMI, 8), SUBTLE, 1.2)
     d = ImageDraw.Draw(img)
 
     # KPI tiles
