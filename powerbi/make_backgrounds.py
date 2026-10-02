@@ -46,7 +46,7 @@ LAYOUT = [
          kpis=[("TOTAL REVENUE", TEAL, None), ("ORDERS", SKY, None), ("ACTIVE CUSTOMERS", VIOLET, None),
                ("AVG ORDER VALUE", AMBER, None), ("REVENUE YoY", ROSE, None)],
          panels=[(190, 200, 850, 455, "MONTHLY REVENUE  ·  THIS YEAR VS LAST YEAR", "visual", None),
-                 (870, 200, 1260, 455, "TOP 10 MARKETS  ·  EXCL. UK", "visual", None),
+                 (870, 200, 1260, 455, "TOP 8 MARKETS  ·  EXCL. UK", "visual", None),
                  (190, 470, 620, 700, "ORDERS BY WEEKDAY", "visual", None),
                  (640, 470, 1260, 700, "KEY INSIGHTS", "text", [
                      (TEAL, "Top 20% of customers generate 77% of revenue: high concentration risk."),

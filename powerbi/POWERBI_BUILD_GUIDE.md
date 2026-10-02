@@ -167,10 +167,10 @@ Build **one** card perfectly, then **Ctrl+C / Ctrl+V** it and just swap the meas
 | Panel | Visual | Fields | X | Y | W | H |
 |---|---|---|---|---|---|---|
 | Monthly revenue | **Area chart** | X: DimDate[YearMonth] · Y: Total Revenue, Revenue PY | 198 | 234 | 644 | 213 |
-| Top 10 markets | **Bar chart** | Y: FactSales[Country] · X: Total Revenue | 878 | 234 | 374 | 213 |
+| Top 8 markets | **Bar chart** | Y: FactSales[Country] · X: Total Revenue | 878 | 234 | 374 | 213 |
 | Orders by weekday | **Column chart** | X: DimDate[Weekday] · Y: Total Orders | 198 | 504 | 414 | 188 |
 
-- **Top 10 markets:** Filters pane → Country → *Basic filtering* → Select all, then **untick United Kingdom**. Then *Filter type: Top N* → Top 10 by Total Revenue. Turn on **Data labels**.
+- **Top 10 markets:** Filters pane → Country → *Basic filtering* → Select all, then **untick United Kingdom**. Then *Filter type: Top N* → Top 8 by Total Revenue (10 bars need scrolling). Turn on **Data labels**.
 - **Area chart:** colours: Total Revenue teal, Revenue PY grey (`#526179`). Legend at top-right.
 - The *Key Insights* panel is already in the background, so nothing to add there.
 
