@@ -32,7 +32,7 @@
 | 06 | [Revenue forecast](notebooks/06_revenue_forecast.ipynb) | Baselines, harmonic (Fourier) regression, AIC model selection, ensemble, prediction intervals |
 | 07 | [SQL & Power BI export](notebooks/07_sql_and_powerbi_export.ipynb) | SQLite, CTEs, window functions (NTILE, LAG), reconciliation, star schema |
 | — | [SQL queries](sql/rfm_analysis.sql) | RFM, segment summary, MoM growth, repeat rate by country |
-| — | [Power BI dashboard](powerbi/) | 5 pages: Overview · Segments · Churn Risk · Cohorts · Forecast |
+| — | [Power BI dashboard](reports/Customer_Analytics_Dashboard.pdf) | 5 pages: Overview · Segments · Churn Risk · Cohorts · Forecast |
 | — | [Executive summary](reports/executive_summary.md) | 1-page findings, recommendations, assumptions & limitations |
 
 ## Selected visuals
@@ -45,10 +45,18 @@
 |---|---|
 | ![Cohorts](reports/figures/04_cohort_heatmap.png) | ![RFM vs KMeans](reports/figures/03_rfm_vs_kmeans.png) |
 
-## Power BI dashboard (in progress)
-Five-page dark-theme dashboard (Overview · Segments · Churn Risk · Cohorts · Forecast) built on a star schema with DAX measures. Page design preview:
+## Power BI dashboard
+Five-page interactive dashboard built on a star schema (1 fact table, 4 dimensions) with 27 DAX measures, including time intelligence, cohort retention and like-for-like YoY growth. Download: [PDF](reports/Customer_Analytics_Dashboard.pdf) · [.pbix](powerbi/Customer%20Segmentation%20and%20RFM%20Analysis.pbix)
 
-![Dashboard design](powerbi/backgrounds/01_overview.png)
+![Executive Overview](reports/dashboard/01_overview.png)
+
+| Customer Segments (RFM) | Churn Risk |
+|---|---|
+| ![Segments](reports/dashboard/02_segments.png) | ![Churn Risk](reports/dashboard/03_churn_risk.png) |
+
+| Cohort Retention | Revenue Forecast |
+|---|---|
+| ![Cohorts](reports/dashboard/04_cohorts.png) | ![Forecast](reports/dashboard/05_forecast.png) |
 
 ## Methodology highlights
 - **No data leakage:** churn features built only from data *before* each cutoff date; labels from the 90 days *after*; tested on a later, unseen quarter.
